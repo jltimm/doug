@@ -1,6 +1,6 @@
-package com.jlt
+package com.jlt.controller
 
-
+import com.jlt.module
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.testing.handleRequest
@@ -8,13 +8,13 @@ import io.ktor.server.testing.withTestApplication
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class ApplicationTest {
+class DocumentControllerTest {
     @Test
     fun testRoot() {
-        withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Get, "/").apply {
+        withTestApplication({ module() }) {
+            handleRequest(HttpMethod.Get, "/document").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
-                assertEquals("HELLO WORLD!", response.content)
+                assertEquals("Test", response.content)
             }
         }
     }
